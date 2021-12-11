@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Drums</title>
+
+	<style type="text/css">
+	body{
+			background-image: url("background.jpg");
+ background-color: #ffffff;
+ background-repeat: no-repeat;
+  background-size: 100% 100vh;
+
+		}
+		.play:after{
+			content: '';
+		}
+		.key{
+			background: white;width: 100px;width: fit-content;padding: 8px 10px 8px 10px;display: flex;flex-direction: column;align-items: center;justify-content: center;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;border-radius: 5px;
+
+		}
+		.active{
+			border: 2px solid red;
+			transition: all .09s;
+			transform: translateY(-20px);
+		}
+	</style>
+</head>
+<body>
+	<div >
+			<div class="bg-con">
+				<div style="background: transparent;width: 100%;height: 100vh;">
+					
+					<p class="play" data-key="65" onclick="soundClick(this)"  style="position: absolute;right: 37%;bottom: 5%;width: 330px;height: 250px;border-radius: 50%;background: none;font-weigth: bold;background-color: rgba(255, 255, 255, 0.5);display: flex;align-items: center;justify-content: center;">Created by: Jaylord Bucayu</p>
+
+					<p class="play" onclick="soundClick(this)" data-key="74" style="position: absolute;right: 32%;bottom: 53%;width: 200px;height: 120px;border-radius: 25%;background: none;"></p>
+					<p class="play" onclick="soundClick(this)" data-key="75" style="position: absolute;left: 32%;top: 22%;width: 200px;height: 140px;border-radius: 25%;background: none;"></p>
+
+		<p class="play" onclick="soundClick(this)" data-key="68" style="position: absolute;right: 30%;bottom: 41%;width: 220px;height: 80px;border-radius: 25%;background: none;"></p>
+
+			<p class="play" onclick="soundClick(this)" data-key="82" style="position: absolute;right: 13%;top: 4%;width: 290px;height: 80px;border-radius: 65%;background: none;"></p>
+
+				<p class="play" onclick="soundClick(this)" data-key="67" style="position: absolute;right: 16%;top: 30%;width: 200px;height: 50px;border-radius: 55%;background: none;"></p>
+
+					<p class="play" onclick="soundClick(this)" data-key="81" style="position: absolute;left: 13%;top: 4%;width: 350px;height: 90px;border-radius: 55%;background: none; transform: skewY(8deg);"></p>
+
+
+				<p class="play" onclick="soundClick(this)" data-key="84" style="position: absolute;left: 25%;top: 40%;width: 180px;height: 170px;border-radius: 5%;background: none;"></p>
+
+
+
+	<div style="width: fit-content;display: flex;align-items: center;justify-content: center;position: absolute;bottom: 2%;left: 23%;gap:10px;">
+
+	<div data-key="65" class="key">
+		<kbd>A</kbd>
+		<span>Kick</span>
+	</div>
+	<div data-key="83" class="key" >
+		<kbd>S</kbd>
+		<span>Snare Left</span>
+	</div>
+	<div data-key="68" class="key">
+		<kbd>D</kbd>
+			<span>Snare Right</span>
+	</div>
+
+	<div data-key="67" class="key">
+		<kbd>C</kbd>
+			<span>Hats</span>
+	</div>
+
+	<div data-key="82" class="key">
+		<kbd>R</kbd>
+			<span>Crash</span>
+	</div>
+		<div data-key="84" class="key">
+		<kbd>T</kbd>
+			<span>Side kick</span>
+	</div>
+	<div data-key="74" class="key">
+		<kbd>J</kbd>
+			<span>Medium Tom</span>
+	</div>
+
+		<div data-key="75" class="key">
+		<kbd>K</kbd>
+			<span>High Tom</span>
+	</div>
+
+
+<div data-key="81" class="key">
+		<kbd>Q</kbd>
+			<span>Trash</span>
+	</div>
+
+</div>
+
+				</div>
+
+					
+
+
+				</div>
+
+			</div>
+	</div>
+
+
+	<audio data-key="65" src="dkick.wav"></audio>
+	<audio data-key="83" src="snare.wav"></audio>
+	<audio data-key="68" src="snare.wav"></audio>
+	<audio data-key="82" src="crash1.wav"></audio>
+	<audio data-key="67" src="hats.wav"></audio>
+	<audio data-key="84" src="bigKick.wav"></audio>
+	<audio data-key="81" src="dtrash.wav"></audio>
+	<audio data-key="74" src="medTom.wav"></audio>
+	<audio data-key="75" src="highTom.wav"></audio>
+
+	<script type="text/javascript">
+		window.addEventListener('keydown',function(e){
+			e.preventDefault();
+			const audioKey = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+			const keys = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+
+			audioKey.currentTime = 0;
+			audioKey.play();
+			keys.classList.add('active');
+
+			setTimeout(function(){
+				keys.classList.remove('active');
+			},200);
+			
+		});
+
+		function soundClick(identifier){
+			console.log(identifier);
+			var keyCode = identifier.getAttribute('data-key');
+					
+					const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+				audio.currentTime = 0;
+					audio.play();
+		}
+		
+
+		
+	</script>
+</body>
+</html>
